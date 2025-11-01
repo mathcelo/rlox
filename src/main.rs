@@ -10,7 +10,7 @@ fn main() {
         eprintln!("Usage: cargo run main [script]");
         process::exit(64);
     } else if number_of_arguments == 3 {
-        lox::run_file("hello there!");
+        lox::run_file(&arguments[2]);
     } else {
         lox::run_prompt();
     }
