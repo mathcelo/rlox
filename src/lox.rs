@@ -1,5 +1,5 @@
 pub fn run_file(file_name: &str) {
-    println!("Lox says: {file_name}");
+    unimplemented!("run_file is not yet implemented");
 }
 
 pub fn run_prompt() {
