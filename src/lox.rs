@@ -1,9 +1,9 @@
 use std::env;
 use std::process::ExitCode;
 
+mod run;
 mod run_file;
 mod run_prompt;
-mod run;
 
 pub fn main() -> ExitCode {
     let args: Vec<String> = env::args().collect();
@@ -19,6 +19,7 @@ pub fn main() -> ExitCode {
             return ExitCode::from(74);
         }
     } else {
+        run_prompt::run_prompt();
         println!("running prompt")
     }
 
