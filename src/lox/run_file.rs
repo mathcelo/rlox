@@ -20,11 +20,14 @@ pub fn run_file(path: &str) -> std::io::Result<()> {
 
     let reader = BufReader::new(lox_file);
 
+    let mut source = String::new();
     for line_result in reader.lines() {
-        let line = line_result?; // Handle potential errors for each line
-
-        run::run(&line);
+        let line = line_result?;
+        source.push_str(&line);
+        source.push('\n');
     }
+
+    run::run(&source);
 
     Ok(())
 }

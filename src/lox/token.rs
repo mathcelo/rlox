@@ -43,6 +43,7 @@ impl std::fmt::Display for Token {
                 Literal::Nil => write!(f, "nil")?,
             }
         }
+        write!(f, " (line {})", self.line)?;
         Ok(())
     }
 }
