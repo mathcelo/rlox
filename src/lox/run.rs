@@ -1,12 +1,20 @@
 use std::sync::atomic::{AtomicBool, Ordering};
 
+use super::scanner::Scanner;
+
 static HAD_ERROR: AtomicBool = AtomicBool::new(false);
 
-pub(super) fn run(line: &str) {
-    println!("Running line: {}", line)
+pub(super) fn run(source: &str) {
+    let mut scanner = Scanner::new(source.to_string());
+    let tokens = scanner.scan_tokens();
+    
+    // For now, just print the tokens
+    for token in tokens {
+        println!("{}", token);
+    }
 }
 
-fn error(line_number: usize, message: &str) {
+pub(super) fn error(line_number: usize, message: &str) {
     report(line_number, "", message);
 }
 

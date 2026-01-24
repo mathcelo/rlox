@@ -5,6 +5,7 @@ mod exit_codes;
 mod run;
 mod run_file;
 mod run_prompt;
+mod scanner;
 mod token;
 mod token_type;
 
