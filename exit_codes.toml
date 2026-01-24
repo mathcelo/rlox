@@ -1,0 +1,4 @@
+[exit_codes]
+usage_error = 64      # Command-line usage error
+data_error = 65      # Data format error (parse/compile error)
+io_error = 74        # Input/output error

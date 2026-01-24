@@ -17,5 +17,6 @@ pub fn run_prompt() {
             break;
         }
         run::run(trimmed_input);
+        run::clear_error();
     }
 }
