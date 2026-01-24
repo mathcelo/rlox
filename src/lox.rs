@@ -14,7 +14,10 @@ pub fn main() -> ExitCode {
         println!("Usage: cargo run [script]");
         return ExitCode::from(64);
     } else if number_of_args == 2 {
-        run_file::run_file(&args[1]);
+        if let Err(e) = run_file::run_file(&args[1]) {
+            eprintln!("Error reading file: {}", e);
+            return ExitCode::from(74);
+        }
     } else {
         println!("running prompt")
     }

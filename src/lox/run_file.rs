@@ -1,7 +1,7 @@
 use std::fs::File;
-use std::io::ErrorKind;
+use std::io::{BufRead, BufReader, ErrorKind};
 
-pub fn run_file(path: &str) {
+pub fn run_file(path: &str) -> std::io::Result<()> {
     let lox_file_result = File::open(path);
 
     let lox_file = match lox_file_result {
@@ -15,4 +15,15 @@ pub fn run_file(path: &str) {
             }
         },
     };
+
+    let reader = BufReader::new(lox_file);
+
+    for line_result in reader.lines() {
+        let line = line_result?; // Handle potential errors for each line
+
+        // Do something with the line (e.g., print it)
+        println!("{}", line);
+    }
+
+    Ok(())
 }
