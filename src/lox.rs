@@ -1,6 +1,10 @@
 use std::env;
 use std::process::ExitCode;
 
+mod run_file;
+mod run_prompt;
+mod run;
+
 pub fn main() -> ExitCode {
     let args: Vec<String> = env::args().collect();
 
@@ -10,7 +14,7 @@ pub fn main() -> ExitCode {
         println!("Usage: cargo run [script]");
         return ExitCode::from(64);
     } else if number_of_args == 2 {
-        println!("running file {}", args[1])
+        run_file::run_file(&args[1]);
     } else {
         println!("running prompt")
     }
