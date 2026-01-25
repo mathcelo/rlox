@@ -4,7 +4,7 @@
 use super::ast::Expr;
 use crate::lox::lexer::token::{Literal, Token};
 use crate::lox::lexer::token_type::TokenType;
-use crate::lox::runner::run;
+use crate::lox::error;
 
 #[derive(Debug, Clone)]
 pub struct ParseError;
@@ -22,10 +22,6 @@ impl Parser {
       current: 0,
       had_error: false,
     }
-  }
-
-  pub fn had_error(&self) -> bool {
-    self.had_error
   }
 
   pub fn parse(&mut self) -> Option<Expr> {
@@ -162,32 +158,11 @@ impl Parser {
   }
 
   fn error(&mut self, token: &Token, message: &str) -> ParseError {
-    run::error_token(token, message);
+    error::error_token(token, message);
     self.had_error = true;
     ParseError
   }
 
-  fn synchronize(&mut self) {
-    self.advance();
-    while !self.is_at_end() {
-      if self.previous().token_type == TokenType::Semicolon {
-        return;
-      }
-      match self.peek().token_type {
-        TokenType::Class
-        | TokenType::Fun
-        | TokenType::Var
-        | TokenType::For
-        | TokenType::If
-        | TokenType::While
-        | TokenType::Print
-        | TokenType::Return => return,
-        _ => {}
-      }
-    }
-
-    self.advance();
-  }
 
   // Helper methods
   fn previous(&self) -> Token {

@@ -1,4 +1,4 @@
-use crate::lox::runner::run;
+use crate::lox::error;
 use super::token::Token;
 use super::token_type::TokenType;
 
@@ -83,7 +83,7 @@ impl Scanner {
             '0'..='9' => self.number(),
             'a'..='z' | 'A'..='Z' | '_' => self.identifier(),
             _ => {
-                run::error(self.line, &format!("Unexpected character: {}", c));
+                error::error(self.line, &format!("Unexpected character: {}", c));
             }
         }
     }
@@ -130,7 +130,7 @@ impl Scanner {
         }
 
         if self.is_at_end() {
-            run::error(self.line, "Unterminated string.");
+            error::error(self.line, "Unterminated string.");
             return;
         }
 

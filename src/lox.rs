@@ -2,6 +2,7 @@ use std::env;
 use std::process::ExitCode;
 
 mod config;
+mod error;
 mod lexer;
 mod runner;
 mod syntax;
@@ -19,7 +20,7 @@ pub fn main() -> ExitCode {
             eprintln!("Error reading file: {}", e);
             return config::exit_codes::io_error();
         }
-        if runner::run::had_error() {
+        if error::had_error() {
             return config::exit_codes::data_error();
         }
     } else {

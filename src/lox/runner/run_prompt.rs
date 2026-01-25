@@ -1,6 +1,7 @@
 use std::io::{self, Write};
 
 use super::run;
+use crate::lox::error;
 
 pub fn run_prompt() {
     loop {
@@ -17,6 +18,6 @@ pub fn run_prompt() {
             break;
         }
         run::run(trimmed_input);
-        run::clear_error();
+        error::clear_error();
     }
 }
