@@ -23,6 +23,8 @@ pub fn main() -> ExitCode {
             return config::exit_codes::data_error();
         }
     } else {
+        // For testing: uncomment the line below to see AST printer output
+        // runner::run::test_ast_printer();
         runner::run_prompt::run_prompt();
         println!("running prompt")
     }
