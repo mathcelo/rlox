@@ -1,6 +1,6 @@
 use std::sync::atomic::{AtomicBool, Ordering};
 
-use super::scanner::Scanner;
+use crate::lox::lexer::scanner::Scanner;
 
 static HAD_ERROR: AtomicBool = AtomicBool::new(false);
 
@@ -14,7 +14,7 @@ pub(super) fn run(source: &str) {
     }
 }
 
-pub(super) fn error(line_number: usize, message: &str) {
+pub(crate) fn error(line_number: usize, message: &str) {
     report(line_number, "", message);
 }
 
@@ -23,7 +23,7 @@ fn report(line_number: usize, location: &str, message: &str) {
     HAD_ERROR.store(true, Ordering::Relaxed);
 }
 
-pub(super) fn had_error() -> bool {
+pub(crate) fn had_error() -> bool {
     HAD_ERROR.load(Ordering::Relaxed)
 }
 

@@ -1,7 +1,7 @@
 use std::process::ExitCode;
 use once_cell::sync::Lazy;
 
-const EXIT_CODES_TOML: &str = include_str!("../../exit_codes.toml");
+const EXIT_CODES_TOML: &str = include_str!("../../../exit_codes.toml");
 
 static EXIT_CODES: Lazy<toml::Value> = Lazy::new(|| {
     EXIT_CODES_TOML.parse().expect("Failed to parse exit_codes.toml")

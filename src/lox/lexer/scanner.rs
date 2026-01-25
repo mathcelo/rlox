@@ -1,4 +1,4 @@
-use super::run;
+use crate::lox::runner::run;
 use super::token::Token;
 use super::token_type::TokenType;
 
@@ -145,7 +145,11 @@ impl Scanner {
         );
     }
 
-    fn add_token_with_literal(&mut self, token_type: TokenType, literal: Option<super::token::Literal>) {
+    fn add_token_with_literal(
+        &mut self,
+        token_type: TokenType,
+        literal: Option<super::token::Literal>,
+    ) {
         let text = &self.source[self.start..self.current];
         self.tokens.push(Token::new(token_type, text.to_string(), literal, self.line));
     }
