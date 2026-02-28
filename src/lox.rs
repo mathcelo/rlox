@@ -30,5 +30,5 @@ pub fn main() -> ExitCode {
         println!("running prompt")
     }
 
-    return ExitCode::SUCCESS;
+    ExitCode::SUCCESS
 }
